@@ -5,6 +5,7 @@ import { AuthSignupComponent } from './auth/auth-pages/auth-signup/auth-signup.c
 import { AuthPassResetComponent } from './auth/auth-pages/auth-pass-reset/auth-pass-reset.component';
 import { AuthLockscreenComponent } from './auth/auth-pages/auth-lockscreen/auth-lockscreen.component';
 import { AuthComponent } from './auth/auth.component';
+import { UtilityComponent } from './utility/utility.component';
 
 export const routes: Routes = [
     {
@@ -18,5 +19,11 @@ export const routes: Routes = [
         component: AuthComponent,
         loadChildren: () =>
             import('./auth/auth.route').then((mod) => mod.AUTH_ROUTES),
+    },
+    {
+        path: 'utility',
+        component: UtilityComponent,
+        loadChildren: () =>
+            import('./utility/utility.route').then((mod) => mod.UTILITY_ROUTES),
     },
 ];
