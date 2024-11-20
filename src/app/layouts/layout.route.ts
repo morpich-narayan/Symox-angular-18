@@ -9,6 +9,11 @@ import { PagesStarterComponent } from '../pages/utility/pages-starter/pages-star
 import { PagesTimelineComponent } from '../pages/utility/pages-timeline/pages-timeline.component';
 import { PagesFaqsComponent } from '../pages/utility/pages-faqs/pages-faqs.component';
 import { PagesPricingComponent } from '../pages/utility/pages-pricing/pages-pricing.component';
+import { ExtendedRangesliderComponent } from '../pages/extendent/extended-rangeslider/extended-rangeslider.component';
+import { ExtendentRatingsComponent } from '../pages/extendent/extendent-ratings/extendent-ratings.component';
+import { ExtendentNotificationsComponent } from '../pages/extendent/extendent-notifications/ui-notifications.component';
+import { MapsGoogleComponent } from '../pages/maps/maps-google/maps-google.component';
+import { MapsLeafletComponent } from '../pages/maps/maps-leaflet/maps-leaflet.component';
 
 export const PAGE_ROUTES: Routes = [
   { path: '', component: DashboardComponent },
@@ -25,4 +30,13 @@ export const PAGE_ROUTES: Routes = [
   { path: 'pages-timeline', component: PagesTimelineComponent },
   { path: 'pages-faqs', component: PagesFaqsComponent },
   { path: 'pages-pricing', component: PagesPricingComponent },
+  
+  // Extended pages
+  { path: 'extended-rangeslider', component: ExtendedRangesliderComponent },
+  { path: 'extended-rating', component: ExtendentRatingsComponent },
+  { path: 'extended-notifications', component: ExtendentNotificationsComponent },
+
+  // Maps
+  { path: 'maps-google', component: MapsGoogleComponent },
+  { path: 'maps-leaflet', component: MapsLeafletComponent },
 ]

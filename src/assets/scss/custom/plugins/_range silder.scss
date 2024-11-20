@@ -1,0 +1,27 @@
+//
+// Range silder
+//
+
+.ngx-slider {
+	.ngx-slider-pointer {
+		width: 15px !important;
+		height: 15px !important;
+		top: -6px !important;
+		background: var(--bs-primary) !important;
+		&:after {
+			display: none;
+		}
+	}
+	.ngx-slider-bar {
+		background: var(--bs-light) !important;
+	}
+	.ngx-slider-selection {
+		background: var(--bs-primary) !important;
+	}
+	.ngx-slider-tick.ngx-slider-selected {
+		background: var(--bs-primary) !important;
+	}
+	.ngx-slider-tick {
+		background: var(--bs-tertiary-bg) !important;
+	}
+}
