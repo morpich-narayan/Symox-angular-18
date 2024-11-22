@@ -2,14 +2,25 @@
 // alerts.scss
 //
 
-.alert-top-border {
-  background-color: $card-bg;
-  border-color: var(--#{$prefix}border-color);
-  border-top: 2px solid $light;
+// alert solid
+
+.alert-solid {
+  .alert-link {
+      color: $white;
+  }
 }
 
+// alert outline
+
 .alert-outline {
-  background-color: $white;
+  background-color: var(--#{$prefix}card-bg-custom);
+  border-width: 2px;
+}
+
+// alert borderless
+
+.alert-borderless {
+  border-width: 0;
 }
 
 // alert-label-icon
@@ -20,83 +31,33 @@
   border: 0;
 
   .label-icon {
-    position: absolute;
-    width: 45px;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: rgba($white, 0.1);
-    border-right: 1px solid rgba($white, 0.1);
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      position: absolute;
+      width: 45px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: rgba($white, 0.15);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
 
   // label arrow
   &.label-arrow {
-    overflow: hidden;
-
-    .label-icon {
-      color: $white;
-
-      &:after {
-        content: "";
-        position: absolute;
-        border: 6px solid transparent;
-        right: -12px;
-      }
-    }
-  }
-}
-
-.toast-container{
-  z-index: 0;
-}
-
-
-
-
-.alert-light {
-  color: $text-muted;
-}
-
-@each $color,
-$value in $theme-colors {
-  .alert-top-border {
-    &.alert-#{$color} {
-      border-top-color: $value;
-      color: $value;
-    }
-  }
-
-  .alert-outline {
-    &.alert-#{$color} {
-      border: 1px solid rgba($value, .8);
-      color: $value;
-    }
-  }
-
-  // alert border left
-  .alert-border-left {
-    &.alert-#{$color} {
-      border-left-color: $value;
-    }
-  }
-
-  // label arrow
-  .label-arrow {
-    &.alert-#{$color} {
+      overflow: hidden;
       .label-icon {
-        background-color: $value;
-
-        &:after {
-          border-left-color: $value !important;
-        }
+          &:after {
+              content: "";
+              position: absolute;
+              border: 6px solid transparent;
+              border-left-color: $primary;
+              right: -12px;
+          }
       }
-    }
   }
 }
+
 
 // Alert border left example
 
@@ -104,39 +65,147 @@ $value in $theme-colors {
   border-left: 3px solid;
 }
 
-.alert-top-border,
-.alert-outline {
-  &.alert-light {
-    color: $text-muted;
+// alert top border example
+
+.alert-top-border {
+  background-color: var(--#{$prefix}card-bg-custom);
+  border-color:   var(--#{$prefix}border-color);
+  border-top: 2px solid;
+  color: var(--#{$prefix}body-color);
+}
+
+//alert additional example
+
+.alert-additional { 
+  padding: 0;
+
+  .alert-body{
+      padding: $alert-padding-y $alert-padding-x;
+  }
+  .alert-content {
+      padding: $alert-padding-y $alert-padding-x;
+      border-bottom-left-radius: $alert-border-radius;
+      border-bottom-right-radius: $alert-border-radius;
+      margin: 0 (-$alert-border-width) (-$alert-border-width) (-$alert-border-width);
   }
 }
 
-body[data-bs-theme="dark"] {
+// rounded label example
 
-  .alertify .ajs-footer .ajs-buttons .ajs-button{
-    
-      &.ajs-cancel{
-      color: $white;
-    }
-  } 
+.rounded-label {
+  .label-icon {
+      width: 45px;
+      height: 26px;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 0 30px 30px 0;
+  }
+}
 
+// Alert example loop
 
-  .alertify .ajs-header{
-      border-bottom: var(--#{$prefix}border-color-translucent);
+@each $color, $value in $theme-colors {
+  // alert solid
+  .alert-solid {
+      &.alert-#{$color} {
+          background-color: $value;
+          border-color: $value;
+          color: set-color-from-background($value);
+      }
   }
 
-  .alertify .ajs-footer {
-    border-top: var(--#{$prefix}border-color-translucent);
-  }
-
+  // alert outline
   .alert-outline {
-    background-color: $gray-800;
+      &.alert-#{$color} {
+          color: $value;
+      }
   }
 
-  .ajs-header,
-  .ajs-body,
-  .ajs-content {
-    color: $card-title-color;
-    border-top: var(--#{$prefix}border-color);
+  // alert border left
+  .alert-border-left {
+      &.alert-#{$color} {
+          border-left-color: $value;
+      }
+  }
+
+  // alert top border
+  .alert-top-border {
+      &.alert-#{$color} {
+          border-top-color: $value;
+      }
+  }
+  
+
+  // rounded label
+
+  .rounded-label {
+      &.alert-#{$color} {
+          .label-icon {
+              background-color: $value;
+              color: set-color-from-background($value);
+          }
+      }
+  }
+
+  // label arrow
+
+  .label-arrow {
+      &.alert-#{$color} {
+          .label-icon {
+              color: set-color-from-background($value);
+              background-color: $value;
+              &:after {
+                  border-left-color: $value !important;
+              }
+          }
+      }
+  }
+
+  .alert{
+      &.alert-#{$color} {
+          .btn-close::after{
+              color: $value;
+          }
+      }
+      
+  }
+
+  //alert additional example
+  .alert-additional {
+      &.alert-#{$color} {
+          .alert-content {
+              background-color: $value;
+              color: set-color-from-background($value);
+          }
+      }
+  }   
+}
+.alert-dismissible {
+  .btn-close {
+      background: transparent !important;
+      &::after {
+          background: transparent !important;
+          content: "\F0156" !important;
+          font-size: 18px;
+          line-height:15px;
+          font-family: "Material Design Icons" !important;
+      }
+  }
+}
+
+.alert-outline.alert-dark{
+  color: var(--#{$prefix}dark);
+}
+
+.alert-modern{
+  overflow: hidden;
+  position: relative;
+  .icons  {
+      position: absolute;
+      top: -20px;
+      opacity: 0.08;
+      font-size: 60px;
+      transform: rotate(-45deg);
   }
 }
